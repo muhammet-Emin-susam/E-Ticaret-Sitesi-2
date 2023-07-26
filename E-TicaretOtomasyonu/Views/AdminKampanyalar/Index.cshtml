@@ -1,0 +1,116 @@
+﻿@using E_TicaretOtomasyonu.Models
+@model List<TBLKAMPANYALAR>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h4 class="pb-1 mb-4 text-muted">Kampanyalar</h4>
+<input type="button" name="name" value="Resim Ekle" class="btn btn-info" style="margin-top:3px;margin-bottom:20px" onclick="Modal()" />
+<div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+
+    @foreach (var item in Model)
+    {
+        <div class="col">
+            <div class="card h-100">
+                <img class="card-img-top" src="@item.KampanyaResimURL" alt="Card image cap" />
+                <div class="card-body">
+                    @*<h5 class="card-title">@item.KategoriAD</h5>
+                        <p class="card-text">
+                            @item.KategoriAciklama
+                        </p>*@
+                    <a href="/AdminKampanyalar/KampanyaSil/@item.ID" class="btn btn-danger">Sil</a>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+<div class="modal fade" id="KampanyaModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Modal title</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <form action="~/AdminKampanyalar/KampanyaEkle" method="post" enctype="multipart/form-data">
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="image-preview">
+                            <img class="img-responsive img-thumbnail" id="Resim" src="" style="width: 352px; height: 200px;" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Kapat
+                    </button>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                    <input type="file" id="SelectImage" style="display: none" name="KampanyaResimURL" />
+                    <input type="button" class="btn btn-secondary waves-effect waves-float waves-light" value="Resim Ekle" id="AddImage" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Adjs{
+    <script>
+        function Modal() {
+            $("#KampanyaModal").modal("show");
+        }
+        $('#AddImage').click(function () {
+            $('#SelectImage').click();
+        });
+
+        $('#AddImage').click(function () {
+            var imgElement = $(this).find("img").first();
+            if (imgElement.length) {
+                var fullPath = imgElement.attr('src');
+                console.log(fullPath);
+            }
+        });
+        $(function () {
+            jQuery.browser = {};
+            jQuery.browser.msie = false;
+            jQuery.browser.version = 0;
+            if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+                jQuery.browser.msie = true;
+                jQuery.browser.version = RegExp.$1;
+            }
+            $("#SelectImage").change(function () {
+                $(".image-preview").html("");
+                var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                if (regex.test($(this).val().toLowerCase())) {
+                    if ($.browser.msie && parseFloat(jQuery.browser.version) <= 9.0) {
+                        $(".image-preview").show();
+                        $(".image-preview")[0].filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = $(this).val();
+                    }
+                    else {
+                        if (typeof (FileReader) != "undefined") {
+                            $(".image-preview").show();
+                            $(".image-preview").append("<img style= width:24.92rem;height:13.92rem;margin-top:50; />");
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                $(".image-preview img").attr("src", e.target.result);
+                            }
+                            reader.readAsDataURL($(this)[0].files[0]);
+                        } else {
+                            alert("This browser does not support FileReader.");
+                        }
+                    }
+                } else {
+                    alert("Please upload a valid image file.");
+                }
+            });
+        });
+    </script>
+}
+
+
+

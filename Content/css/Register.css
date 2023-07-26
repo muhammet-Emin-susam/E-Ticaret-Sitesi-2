@@ -1,0 +1,95 @@
+﻿
+.Card-Row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top:120px;
+    margin-bottom:120px;
+}
+
+.Card-Row .Card-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("/img/register-template.jpg");
+    width: 600px;
+    height: 600px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.Card-Row .Card-image h1 {
+    color: white;
+    font-size: 25px;
+}
+
+.Card-Row .Card-Content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 66px;
+    padding-bottom: 160px;
+    padding-right: 50px;
+    -webkit-box-shadow: 4px 4px 8px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 4px 8px 1px rgba(0,0,0,0.75);
+    box-shadow: 4px 4px 8px 1px rgba(0,0,0,0.75);
+}
+
+.Card-Row .Card-Content #registerForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Card-Row .Card-Content #registerForm input {
+    width: 400px;
+    margin-left: 30px;
+    border: none;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    margin-right: 15px;
+    border: 1px solid black;
+    border-radius: 30px;
+    transition: all 0.3s;
+    padding: 6px;
+    text-align: center;
+}
+
+::placeholder{
+    color:black; 
+}
+
+.Card-Row .Card-Content #registerForm input:hover {
+    border-color: red;
+}
+
+.Card-Row .Card-Content #registerForm button {
+    padding: 6px;
+    width: 220px;
+    border: none;
+    margin-bottom: 25px;
+    color: #efa765;
+    border: 1px solid #efa765;
+    text-decoration: none;
+    transition: all 0.5s;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 25px;
+}
+
+.Card-Row .Card-Content #registerForm button:hover {
+    background-color: #efa765;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.Card-Row .Card-Content #registerForm h2 {
+    font-size: 25px;
+    margin-bottom: 40px;
+}

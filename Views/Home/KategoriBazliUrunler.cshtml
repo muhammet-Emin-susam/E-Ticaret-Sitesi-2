@@ -1,0 +1,129 @@
+﻿@using E_TicaretOtomasyonu.Models
+@model List<TBLURUNLER>
+@{
+    ViewBag.Title = "KategoriBazliUrunler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="~/Content/img/shopping-cart-banner.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>@ViewBag.KategoriAciklama</h2>
+                    <div class="breadcrumb__option">
+                        <a href="/Home/Index">Anasayfa</a>
+                        <span>@ViewBag.KategoriAd</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div id="Hepsi" class="Products">
+                    <div class="Cards-Row">
+                        @foreach (var item in Model)
+                        {
+                            <div class="Card">
+                                <img src="@item.ImageURL" style="width: 150px; height:150px; max-width: none;">
+                                <div class="Card-Content">
+                                    <h1>@item.UrunAdi</h1>
+                                    <span>@item.Fiyat</span>
+                                    <ul id="Card-Shopping">
+
+                                        <a href="~/UrunDetay/Index/@item.ID"><i class="fa fa-info-circle"></i></a>
+
+                                        <a><span onclick="SepeteEkle(@item.ID)" style="color:black"><i class="fa fa-plus"></i></span></a>
+                                    </ul>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="product__discount">
+                        <div class="section-title product__discount__title">
+                            <h2>İndirimdeki Ürünler</h2>
+                        </div>
+                        <div class="row">
+                            <div class="product__discount__slider owl-carousel">
+                                @foreach (var item in ViewBag.FarkUrunler)
+                                {
+                                    <div class="col-lg-4">
+                                        <div class="product__discount__item">
+                                            <div class="product__discount__item__pic set-bg"
+                                                 data-setbg="@item.ImageURL">
+                                                <ul class="product__item__pic__hover">
+                                                    <li><span onclick="SepeteEkle(@item.ID)"><a href="#"><i class="fa fa-shopping-cart"></i></a></span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="product__discount__item__text">
+                                                <span>@item.UrunAdi</span>
+                                                <h5><a href="#">@item.Aciklama</a></h5>
+                                                <div class="product__item__price">@item.Fiyat</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Featured Section End -->
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade text-start modal-success" id="KartEklendi" tabindex="-1" aria-labelledby="myModalLabel110" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel110">Başarılı</h5>
+                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+            </div>
+            <div class="modal-body">
+                Ürün başarıyla sepete eklendi.
+            </div>
+            <div class="modal-footer">
+                <a href="/Home/Index" class="btn btn-success">Alışverişe devam et</a>
+                @if (Session["ID"] != null)
+                {
+                    <a href="/Sepet/Index/@Session["ID"]" class="btn btn-success">Sepete Git</a>
+                }
+                else
+                {
+                    <a href="/Login/Index" class="btn btn-success">Sepete Git</a>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Product Section End -->
+
+@section Adjs{
+    <script>
+        function SepeteEkle(ID) {
+            /*var ID = $("#ProductID").val();*/
+            getValue("Sepet/SepeteEkle",
+                { ID: ID },
+                function (data, err) {
+                    if (!data) {
+                        return;
+                    } else if (data == 'Başarılı') {
+                        $('#KartEklendi').modal('show');
+                    }
+                    else if (data.indexOf('Hata') > -1) {
+                        alert(data)
+                    }
+                });
+        };
+    </script>
+}

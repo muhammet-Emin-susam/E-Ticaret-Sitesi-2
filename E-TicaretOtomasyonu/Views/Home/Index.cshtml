@@ -1,0 +1,116 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Hero Section Begin -->
+<section class="hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="hero__item set-bg" data-setbg="/Content/img/hero/shopping-car.png">
+                    <div class="hero__text">
+                        <span>FRUIT FRESH</span>
+                        <h2>Vegetable <br />100% Organic</h2>
+                        <p>Free Pickup and Delivery Available</p>
+                        <a href="#" class="primary-btn">SHOP NOW</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Hero Section End -->
+<!-- Categories Section Begin -->
+<section class="categories">
+    <div class="container">
+        <div class="card-header">
+            Kategorilerimiz
+        </div>
+        <hr style="border-bottom: 3px solid #7b3f00; width: 150px; margin-top: 0; margin-bottom: 40px;">
+
+        <div class="row">
+            <div class="categories__slider owl-carousel">
+                @foreach (var item in ViewBag.Kategoriler)
+                {
+                    <div class="col-lg-3">
+                        <div class="categories__item set-bg" data-setbg="@item.ResimURL">
+                            <h5><a href="/UrunDetay/Index/@item.ID">@item.KategoriAD</a></h5>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Categories Section End -->
+<!-- Campaign Start Section -->
+<input type="text" name="name" value="@Session["KullaniciAdi"]" style="display:none " id="KullaniciAdi" />
+<section class="campaign">
+    <div class="all-campaign">
+        <div class="header-text">
+            Kampanyalar Gelsin
+        </div>
+        <hr style="border-bottom: 3px solid #7b3f00; width: 190px; margin-top: 0;">
+        <div class="card-all">
+            @*<div class="card-1">
+            <img src="/Content/img/banner-meat.jpg">
+        </div>
+        <div class="card-2">
+            <img src="/Content/img/banner-snacks.jpg">
+        </div>
+        <div class="card-3">
+            <img src="/Content/img/banner-vegatables.jpg">
+        </div>*@
+            @foreach (var item in ViewBag.Kampanyalar)
+            {
+                <div class="card-3">
+                    <img src="@item.KampanyaResimURL">
+                </div>
+            }
+
+        </div>
+        @*<div class="button">
+            <a href="">Tüm Kampanyaları Gör</a>
+        </div>*@
+    </div>
+</section>
+<!-- Campaign End Section -->
+<!-- Product İnformation Start Section -->
+<section class="product-information">
+    <div class="information-card-all">
+        <div class="info-card-1">
+            <img src="/Content/img/banner-cheese.png">
+            <span id="card-1-text-1">Binlerce</span>
+            <span id="card-1-text-2">ürün çeşidi</span>
+            <p>Market alışverişine ve çok daha fazlasına kolayca ulaşabilirsin!</p>
+            <p>kolayca ulaşabilirsin!</p>
+        </div>
+        <div class="info-card-2">
+            <img src="/Content/img/banner-fish.png">
+            <span id="card-2-text-1">Soğuk zincir</span>
+            <span id="card-2-text-2">kırılmadan teslimat</span>
+            <p>Ürünlerin soğuk hava depolarında muhafaza</p>
+            <p>edilir, soğutmalı araçlarla kapına gelir</p>
+        </div>
+        <div class="info-card-3">
+            <img src="/Content/img/banner-fruit.png">
+            <span id="card-3-text-1">Taptaze</span>
+            <span id="card-3-text-2">gelir</span>
+            <p>Markete gitmene gerek kalmaz, tüm ürünler</p>
+            <p>taptaze kapına gelir.</p>
+        </div>
+    </div>
+</section>
+<!-- Product İnformation Start Section -->
+
+<script src="~/Content/js/jquery-3.3.1.min.js"></script>
+<script>
+    $("document").ready(function () {
+        setTimeout(function () {
+            var string = $('#KullaniciAdi').val();
+            toastr.info("Hoşgeldiniz " + string);
+        }, 100);
+    });
+</script>

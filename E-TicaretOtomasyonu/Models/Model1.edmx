@@ -1,0 +1,754 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TBLADMINLER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Sifre" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TBLADRESLER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdresAdi" Type="nvarchar" MaxLength="150" />
+          <Property Name="AdresAciklama" Type="nvarchar(max)" />
+          <Property Name="KullaniciID" Type="int" />
+          <Property Name="EvNo" Type="int" />
+          <Property Name="ApartmanNo" Type="int" />
+          <Property Name="Sehir" Type="nvarchar" MaxLength="100" />
+          <Property Name="Ulke" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TBLBILGILER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adres" Type="nvarchar(max)" />
+          <Property Name="TelNo" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TBLKAMPANYALAR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KampanyaResimURL" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TBLKATEGORILER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KategoriAD" Type="nvarchar(max)" />
+          <Property Name="KategoriAciklama" Type="nvarchar(max)" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="EklenmeTarihi" Type="datetime" />
+          <Property Name="ResimURL" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TBLKULLANICILAR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciAdi" Type="nvarchar(max)" />
+          <Property Name="KullaniciMail" Type="nvarchar(max)" />
+          <Property Name="KullaniciSifre" Type="nvarchar(max)" />
+          <Property Name="KullaniciRol" Type="nvarchar" MaxLength="40" />
+          <Property Name="KullaniciKatilimTarihi" Type="datetime" />
+          <Property Name="KullaniciTel" Type="nvarchar" MaxLength="11" />
+        </EntityType>
+        <EntityType Name="TBLMAGAZA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MagazaAdi" Type="nvarchar(max)" />
+          <Property Name="MagazaEmail" Type="nvarchar(max)" />
+          <Property Name="MagazaSifre" Type="nvarchar(max)" />
+          <Property Name="MagazaResim" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TBLSIPARIS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciID" Type="int" />
+          <Property Name="AdresID" Type="int" />
+          <Property Name="VerilisTarihi" Type="datetime" />
+          <Property Name="Aciklama" Type="nvarchar(max)" />
+          <Property Name="ToplamTutar" Type="decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="TBLSIPARISDETAY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UrunID" Type="int" />
+          <Property Name="Tutar" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Adet" Type="int" />
+          <Property Name="SiparisID" Type="int" />
+          <Property Name="VerilisTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TBLURUNLER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UrunAdi" Type="nvarchar(max)" />
+          <Property Name="Aciklama" Type="nvarchar(max)" />
+          <Property Name="Fiyat" Type="money" />
+          <Property Name="UrunYildizi" Type="int" />
+          <Property Name="ImageURL" Type="nvarchar(max)" />
+          <Property Name="StokAdeti" Type="int" />
+          <Property Name="KategoriID" Type="int" />
+          <Property Name="Marka" Type="nvarchar(max)" />
+          <Property Name="KisaAciklama" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="TBLYORUMLAR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Yorum" Type="nvarchar(max)" />
+          <Property Name="KullaniciID" Type="int" />
+          <Property Name="UrunID" Type="int" />
+          <Property Name="EklenmeTarihi" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_TBLADRESLER_TBLKULLANICILAR">
+          <End Role="TBLKULLANICILAR" Type="Self.TBLKULLANICILAR" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TBLADRESLER" Type="Self.TBLADRESLER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLKULLANICILAR">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLADRESLER">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLSIPARIS_TBLADRESLER">
+          <End Role="TBLADRESLER" Type="Self.TBLADRESLER" Multiplicity="0..1" />
+          <End Role="TBLSIPARIS" Type="Self.TBLSIPARIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLADRESLER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLSIPARIS">
+              <PropertyRef Name="AdresID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLSIPARIS_TBLKULLANICILAR">
+          <End Role="TBLKULLANICILAR" Type="Self.TBLKULLANICILAR" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TBLSIPARIS" Type="Self.TBLSIPARIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLKULLANICILAR">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLSIPARIS">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLSIPARISDETAY_TBLSIPARIS">
+          <End Role="TBLSIPARIS" Type="Self.TBLSIPARIS" Multiplicity="0..1" />
+          <End Role="TBLSIPARISDETAY" Type="Self.TBLSIPARISDETAY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLSIPARIS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLSIPARISDETAY">
+              <PropertyRef Name="SiparisID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLSIPARISDETAY_TBLURUNLER">
+          <End Role="TBLURUNLER" Type="Self.TBLURUNLER" Multiplicity="0..1" />
+          <End Role="TBLSIPARISDETAY" Type="Self.TBLSIPARISDETAY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLURUNLER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLSIPARISDETAY">
+              <PropertyRef Name="UrunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLURUNLER_TBLKATEGORILER">
+          <End Role="TBLKATEGORILER" Type="Self.TBLKATEGORILER" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TBLURUNLER" Type="Self.TBLURUNLER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLKATEGORILER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLURUNLER">
+              <PropertyRef Name="KategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLYORUMLAR_TBLKULLANICILAR">
+          <End Role="TBLKULLANICILAR" Type="Self.TBLKULLANICILAR" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TBLYORUMLAR" Type="Self.TBLYORUMLAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLKULLANICILAR">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLYORUMLAR">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLYORUMLAR_TBLURUNLER">
+          <End Role="TBLURUNLER" Type="Self.TBLURUNLER" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TBLYORUMLAR" Type="Self.TBLYORUMLAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLURUNLER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLYORUMLAR">
+              <PropertyRef Name="UrunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLADMINLER" EntityType="Self.TBLADMINLER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLADRESLER" EntityType="Self.TBLADRESLER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLBILGILER" EntityType="Self.TBLBILGILER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLKAMPANYALAR" EntityType="Self.TBLKAMPANYALAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLKATEGORILER" EntityType="Self.TBLKATEGORILER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLKULLANICILAR" EntityType="Self.TBLKULLANICILAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLMAGAZA" EntityType="Self.TBLMAGAZA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLSIPARIS" EntityType="Self.TBLSIPARIS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLSIPARISDETAY" EntityType="Self.TBLSIPARISDETAY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLURUNLER" EntityType="Self.TBLURUNLER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLYORUMLAR" EntityType="Self.TBLYORUMLAR" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBLADRESLER_TBLKULLANICILAR" Association="Self.FK_TBLADRESLER_TBLKULLANICILAR">
+            <End Role="TBLKULLANICILAR" EntitySet="TBLKULLANICILAR" />
+            <End Role="TBLADRESLER" EntitySet="TBLADRESLER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLSIPARIS_TBLADRESLER" Association="Self.FK_TBLSIPARIS_TBLADRESLER">
+            <End Role="TBLADRESLER" EntitySet="TBLADRESLER" />
+            <End Role="TBLSIPARIS" EntitySet="TBLSIPARIS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLSIPARIS_TBLKULLANICILAR" Association="Self.FK_TBLSIPARIS_TBLKULLANICILAR">
+            <End Role="TBLKULLANICILAR" EntitySet="TBLKULLANICILAR" />
+            <End Role="TBLSIPARIS" EntitySet="TBLSIPARIS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLSIPARISDETAY_TBLSIPARIS" Association="Self.FK_TBLSIPARISDETAY_TBLSIPARIS">
+            <End Role="TBLSIPARIS" EntitySet="TBLSIPARIS" />
+            <End Role="TBLSIPARISDETAY" EntitySet="TBLSIPARISDETAY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLSIPARISDETAY_TBLURUNLER" Association="Self.FK_TBLSIPARISDETAY_TBLURUNLER">
+            <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
+            <End Role="TBLSIPARISDETAY" EntitySet="TBLSIPARISDETAY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLURUNLER_TBLKATEGORILER" Association="Self.FK_TBLURUNLER_TBLKATEGORILER">
+            <End Role="TBLKATEGORILER" EntitySet="TBLKATEGORILER" />
+            <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLYORUMLAR_TBLKULLANICILAR" Association="Self.FK_TBLYORUMLAR_TBLKULLANICILAR">
+            <End Role="TBLKULLANICILAR" EntitySet="TBLKULLANICILAR" />
+            <End Role="TBLYORUMLAR" EntitySet="TBLYORUMLAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLYORUMLAR_TBLURUNLER" Association="Self.FK_TBLYORUMLAR_TBLURUNLER">
+            <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
+            <End Role="TBLYORUMLAR" EntitySet="TBLYORUMLAR" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Model.sysdiagrams" />
+          <EntitySet Name="TBLADMINLER" EntityType="Model.TBLADMINLER" />
+          <EntitySet Name="TBLADRESLER" EntityType="Model.TBLADRESLER" />
+          <EntitySet Name="TBLBILGILER" EntityType="Model.TBLBILGILER" />
+          <EntitySet Name="TBLKAMPANYALAR" EntityType="Model.TBLKAMPANYALAR" />
+          <EntitySet Name="TBLKATEGORILER" EntityType="Model.TBLKATEGORILER" />
+          <EntitySet Name="TBLKULLANICILAR" EntityType="Model.TBLKULLANICILAR" />
+          <EntitySet Name="TBLMAGAZA" EntityType="Model.TBLMAGAZA" />
+          <EntitySet Name="TBLSIPARIS" EntityType="Model.TBLSIPARIS" />
+          <EntitySet Name="TBLSIPARISDETAY" EntityType="Model.TBLSIPARISDETAY" />
+          <EntitySet Name="TBLURUNLER" EntityType="Model.TBLURUNLER" />
+          <EntitySet Name="TBLYORUMLAR" EntityType="Model.TBLYORUMLAR" />
+          <AssociationSet Name="FK_TBLADRESLER_TBLKULLANICILAR" Association="Model.FK_TBLADRESLER_TBLKULLANICILAR">
+            <End Role="TBLKULLANICILAR" EntitySet="TBLKULLANICILAR" />
+            <End Role="TBLADRESLER" EntitySet="TBLADRESLER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLSIPARIS_TBLADRESLER" Association="Model.FK_TBLSIPARIS_TBLADRESLER">
+            <End Role="TBLADRESLER" EntitySet="TBLADRESLER" />
+            <End Role="TBLSIPARIS" EntitySet="TBLSIPARIS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLURUNLER_TBLKATEGORILER" Association="Model.FK_TBLURUNLER_TBLKATEGORILER">
+            <End Role="TBLKATEGORILER" EntitySet="TBLKATEGORILER" />
+            <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLSIPARIS_TBLKULLANICILAR" Association="Model.FK_TBLSIPARIS_TBLKULLANICILAR">
+            <End Role="TBLKULLANICILAR" EntitySet="TBLKULLANICILAR" />
+            <End Role="TBLSIPARIS" EntitySet="TBLSIPARIS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLYORUMLAR_TBLKULLANICILAR" Association="Model.FK_TBLYORUMLAR_TBLKULLANICILAR">
+            <End Role="TBLKULLANICILAR" EntitySet="TBLKULLANICILAR" />
+            <End Role="TBLYORUMLAR" EntitySet="TBLYORUMLAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLSIPARISDETAY_TBLSIPARIS" Association="Model.FK_TBLSIPARISDETAY_TBLSIPARIS">
+            <End Role="TBLSIPARIS" EntitySet="TBLSIPARIS" />
+            <End Role="TBLSIPARISDETAY" EntitySet="TBLSIPARISDETAY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLSIPARISDETAY_TBLURUNLER" Association="Model.FK_TBLSIPARISDETAY_TBLURUNLER">
+            <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
+            <End Role="TBLSIPARISDETAY" EntitySet="TBLSIPARISDETAY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLYORUMLAR_TBLURUNLER" Association="Model.FK_TBLYORUMLAR_TBLURUNLER">
+            <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
+            <End Role="TBLYORUMLAR" EntitySet="TBLYORUMLAR" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TBLADMINLER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sifre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TBLADRESLER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdresAdi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="AdresAciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciID" Type="Int32" />
+          <Property Name="EvNo" Type="Int32" />
+          <Property Name="ApartmanNo" Type="Int32" />
+          <Property Name="Sehir" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Ulke" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBLKULLANICILAR" Relationship="Model.FK_TBLADRESLER_TBLKULLANICILAR" FromRole="TBLADRESLER" ToRole="TBLKULLANICILAR" />
+          <NavigationProperty Name="TBLSIPARIS" Relationship="Model.FK_TBLSIPARIS_TBLADRESLER" FromRole="TBLADRESLER" ToRole="TBLSIPARIS" />
+        </EntityType>
+        <EntityType Name="TBLBILGILER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TelNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TBLKAMPANYALAR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KampanyaResimURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TBLKATEGORILER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KategoriAD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KategoriAciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="EklenmeTarihi" Type="DateTime" Precision="3" />
+          <Property Name="ResimURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBLURUNLER" Relationship="Model.FK_TBLURUNLER_TBLKATEGORILER" FromRole="TBLKATEGORILER" ToRole="TBLURUNLER" />
+        </EntityType>
+        <EntityType Name="TBLKULLANICILAR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciMail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciSifre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciRol" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciKatilimTarihi" Type="DateTime" Precision="3" />
+          <Property Name="KullaniciTel" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBLADRESLER" Relationship="Model.FK_TBLADRESLER_TBLKULLANICILAR" FromRole="TBLKULLANICILAR" ToRole="TBLADRESLER" />
+          <NavigationProperty Name="TBLSIPARIS" Relationship="Model.FK_TBLSIPARIS_TBLKULLANICILAR" FromRole="TBLKULLANICILAR" ToRole="TBLSIPARIS" />
+          <NavigationProperty Name="TBLYORUMLAR" Relationship="Model.FK_TBLYORUMLAR_TBLKULLANICILAR" FromRole="TBLKULLANICILAR" ToRole="TBLYORUMLAR" />
+        </EntityType>
+        <EntityType Name="TBLMAGAZA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MagazaAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MagazaEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MagazaSifre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MagazaResim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TBLSIPARIS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciID" Type="Int32" />
+          <Property Name="AdresID" Type="Int32" />
+          <Property Name="VerilisTarihi" Type="DateTime" Precision="3" />
+          <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ToplamTutar" Type="Decimal" Precision="8" Scale="2" />
+          <NavigationProperty Name="TBLADRESLER" Relationship="Model.FK_TBLSIPARIS_TBLADRESLER" FromRole="TBLSIPARIS" ToRole="TBLADRESLER" />
+          <NavigationProperty Name="TBLKULLANICILAR" Relationship="Model.FK_TBLSIPARIS_TBLKULLANICILAR" FromRole="TBLSIPARIS" ToRole="TBLKULLANICILAR" />
+          <NavigationProperty Name="TBLSIPARISDETAY" Relationship="Model.FK_TBLSIPARISDETAY_TBLSIPARIS" FromRole="TBLSIPARIS" ToRole="TBLSIPARISDETAY" />
+        </EntityType>
+        <EntityType Name="TBLSIPARISDETAY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UrunID" Type="Int32" />
+          <Property Name="Tutar" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Adet" Type="Int32" />
+          <Property Name="SiparisID" Type="Int32" />
+          <Property Name="VerilisTarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TBLSIPARIS" Relationship="Model.FK_TBLSIPARISDETAY_TBLSIPARIS" FromRole="TBLSIPARISDETAY" ToRole="TBLSIPARIS" />
+          <NavigationProperty Name="TBLURUNLER" Relationship="Model.FK_TBLSIPARISDETAY_TBLURUNLER" FromRole="TBLSIPARISDETAY" ToRole="TBLURUNLER" />
+        </EntityType>
+        <EntityType Name="TBLURUNLER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UrunAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Fiyat" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="UrunYildizi" Type="Int32" />
+          <Property Name="ImageURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StokAdeti" Type="Int32" />
+          <Property Name="KategoriID" Type="Int32" />
+          <Property Name="Marka" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KisaAciklama" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBLKATEGORILER" Relationship="Model.FK_TBLURUNLER_TBLKATEGORILER" FromRole="TBLURUNLER" ToRole="TBLKATEGORILER" />
+          <NavigationProperty Name="TBLSIPARISDETAY" Relationship="Model.FK_TBLSIPARISDETAY_TBLURUNLER" FromRole="TBLURUNLER" ToRole="TBLSIPARISDETAY" />
+          <NavigationProperty Name="TBLYORUMLAR" Relationship="Model.FK_TBLYORUMLAR_TBLURUNLER" FromRole="TBLURUNLER" ToRole="TBLYORUMLAR" />
+        </EntityType>
+        <EntityType Name="TBLYORUMLAR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Yorum" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciID" Type="Int32" />
+          <Property Name="UrunID" Type="Int32" />
+          <Property Name="EklenmeTarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TBLKULLANICILAR" Relationship="Model.FK_TBLYORUMLAR_TBLKULLANICILAR" FromRole="TBLYORUMLAR" ToRole="TBLKULLANICILAR" />
+          <NavigationProperty Name="TBLURUNLER" Relationship="Model.FK_TBLYORUMLAR_TBLURUNLER" FromRole="TBLYORUMLAR" ToRole="TBLURUNLER" />
+        </EntityType>
+        <Association Name="FK_TBLADRESLER_TBLKULLANICILAR">
+          <End Type="Model.TBLKULLANICILAR" Role="TBLKULLANICILAR" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.TBLADRESLER" Role="TBLADRESLER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLKULLANICILAR">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLADRESLER">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLSIPARIS_TBLADRESLER">
+          <End Type="Model.TBLADRESLER" Role="TBLADRESLER" Multiplicity="0..1" />
+          <End Type="Model.TBLSIPARIS" Role="TBLSIPARIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLADRESLER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLSIPARIS">
+              <PropertyRef Name="AdresID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLURUNLER_TBLKATEGORILER">
+          <End Type="Model.TBLKATEGORILER" Role="TBLKATEGORILER" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.TBLURUNLER" Role="TBLURUNLER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLKATEGORILER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLURUNLER">
+              <PropertyRef Name="KategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLSIPARIS_TBLKULLANICILAR">
+          <End Type="Model.TBLKULLANICILAR" Role="TBLKULLANICILAR" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.TBLSIPARIS" Role="TBLSIPARIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLKULLANICILAR">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLSIPARIS">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLYORUMLAR_TBLKULLANICILAR">
+          <End Type="Model.TBLKULLANICILAR" Role="TBLKULLANICILAR" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.TBLYORUMLAR" Role="TBLYORUMLAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLKULLANICILAR">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLYORUMLAR">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLSIPARISDETAY_TBLSIPARIS">
+          <End Type="Model.TBLSIPARIS" Role="TBLSIPARIS" Multiplicity="0..1" />
+          <End Type="Model.TBLSIPARISDETAY" Role="TBLSIPARISDETAY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLSIPARIS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLSIPARISDETAY">
+              <PropertyRef Name="SiparisID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLSIPARISDETAY_TBLURUNLER">
+          <End Type="Model.TBLURUNLER" Role="TBLURUNLER" Multiplicity="0..1" />
+          <End Type="Model.TBLSIPARISDETAY" Role="TBLSIPARISDETAY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLURUNLER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLSIPARISDETAY">
+              <PropertyRef Name="UrunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLYORUMLAR_TBLURUNLER">
+          <End Type="Model.TBLURUNLER" Role="TBLURUNLER" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.TBLYORUMLAR" Role="TBLYORUMLAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLURUNLER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLYORUMLAR">
+              <PropertyRef Name="UrunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities2">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLADMINLER">
+            <EntityTypeMapping TypeName="Model.TBLADMINLER">
+              <MappingFragment StoreEntitySet="TBLADMINLER">
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLADRESLER">
+            <EntityTypeMapping TypeName="Model.TBLADRESLER">
+              <MappingFragment StoreEntitySet="TBLADRESLER">
+                <ScalarProperty Name="Ulke" ColumnName="Ulke" />
+                <ScalarProperty Name="Sehir" ColumnName="Sehir" />
+                <ScalarProperty Name="ApartmanNo" ColumnName="ApartmanNo" />
+                <ScalarProperty Name="EvNo" ColumnName="EvNo" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="AdresAciklama" ColumnName="AdresAciklama" />
+                <ScalarProperty Name="AdresAdi" ColumnName="AdresAdi" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLBILGILER">
+            <EntityTypeMapping TypeName="Model.TBLBILGILER">
+              <MappingFragment StoreEntitySet="TBLBILGILER">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TelNo" ColumnName="TelNo" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLKAMPANYALAR">
+            <EntityTypeMapping TypeName="Model.TBLKAMPANYALAR">
+              <MappingFragment StoreEntitySet="TBLKAMPANYALAR">
+                <ScalarProperty Name="KampanyaResimURL" ColumnName="KampanyaResimURL" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLKATEGORILER">
+            <EntityTypeMapping TypeName="Model.TBLKATEGORILER">
+              <MappingFragment StoreEntitySet="TBLKATEGORILER">
+                <ScalarProperty Name="ResimURL" ColumnName="ResimURL" />
+                <ScalarProperty Name="EklenmeTarihi" ColumnName="EklenmeTarihi" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="KategoriAciklama" ColumnName="KategoriAciklama" />
+                <ScalarProperty Name="KategoriAD" ColumnName="KategoriAD" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLKULLANICILAR">
+            <EntityTypeMapping TypeName="Model.TBLKULLANICILAR">
+              <MappingFragment StoreEntitySet="TBLKULLANICILAR">
+                <ScalarProperty Name="KullaniciTel" ColumnName="KullaniciTel" />
+                <ScalarProperty Name="KullaniciKatilimTarihi" ColumnName="KullaniciKatilimTarihi" />
+                <ScalarProperty Name="KullaniciRol" ColumnName="KullaniciRol" />
+                <ScalarProperty Name="KullaniciSifre" ColumnName="KullaniciSifre" />
+                <ScalarProperty Name="KullaniciMail" ColumnName="KullaniciMail" />
+                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLMAGAZA">
+            <EntityTypeMapping TypeName="Model.TBLMAGAZA">
+              <MappingFragment StoreEntitySet="TBLMAGAZA">
+                <ScalarProperty Name="MagazaResim" ColumnName="MagazaResim" />
+                <ScalarProperty Name="MagazaSifre" ColumnName="MagazaSifre" />
+                <ScalarProperty Name="MagazaEmail" ColumnName="MagazaEmail" />
+                <ScalarProperty Name="MagazaAdi" ColumnName="MagazaAdi" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLSIPARIS">
+            <EntityTypeMapping TypeName="Model.TBLSIPARIS">
+              <MappingFragment StoreEntitySet="TBLSIPARIS">
+                <ScalarProperty Name="ToplamTutar" ColumnName="ToplamTutar" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="VerilisTarihi" ColumnName="VerilisTarihi" />
+                <ScalarProperty Name="AdresID" ColumnName="AdresID" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLSIPARISDETAY">
+            <EntityTypeMapping TypeName="Model.TBLSIPARISDETAY">
+              <MappingFragment StoreEntitySet="TBLSIPARISDETAY">
+                <ScalarProperty Name="VerilisTarihi" ColumnName="VerilisTarihi" />
+                <ScalarProperty Name="SiparisID" ColumnName="SiparisID" />
+                <ScalarProperty Name="Adet" ColumnName="Adet" />
+                <ScalarProperty Name="Tutar" ColumnName="Tutar" />
+                <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLURUNLER">
+            <EntityTypeMapping TypeName="Model.TBLURUNLER">
+              <MappingFragment StoreEntitySet="TBLURUNLER">
+                <ScalarProperty Name="KisaAciklama" ColumnName="KisaAciklama" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+                <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+                <ScalarProperty Name="StokAdeti" ColumnName="StokAdeti" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="UrunYildizi" ColumnName="UrunYildizi" />
+                <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLYORUMLAR">
+            <EntityTypeMapping TypeName="Model.TBLYORUMLAR">
+              <MappingFragment StoreEntitySet="TBLYORUMLAR">
+                <ScalarProperty Name="EklenmeTarihi" ColumnName="EklenmeTarihi" />
+                <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="Yorum" ColumnName="Yorum" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

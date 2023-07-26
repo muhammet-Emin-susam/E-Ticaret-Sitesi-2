@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="99c475ed0dfb4473934dc33ad7a4ef9e" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Model.TBLADMINLER" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Model.TBLADRESLER" Width="1.5" PointX="0.75" PointY="7.5" />
+        <EntityTypeShape EntityType="Model.TBLBILGILER" Width="1.5" PointX="5.75" PointY="9.75" />
+        <EntityTypeShape EntityType="Model.TBLKAMPANYALAR" Width="1.5" PointX="9.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Model.TBLKATEGORILER" Width="1.5" PointX="0.75" PointY="2.75" />
+        <EntityTypeShape EntityType="Model.TBLKULLANICILAR" Width="1.5" PointX="1.5" PointY="11.5" />
+        <EntityTypeShape EntityType="Model.TBLMAGAZA" Width="1.5" PointX="7.75" PointY="9.75" />
+        <EntityTypeShape EntityType="Model.TBLSIPARIS" Width="1.5" PointX="3" PointY="7.625" />
+        <EntityTypeShape EntityType="Model.TBLSIPARISDETAY" Width="1.5" PointX="5.25" PointY="2.625" />
+        <EntityTypeShape EntityType="Model.TBLURUNLER" Width="1.5" PointX="3" PointY="2.125" />
+        <EntityTypeShape EntityType="Model.TBLYORUMLAR" Width="1.5" PointX="8.25" PointY="2.75" />
+        <AssociationConnector Association="Model.FK_TBLADRESLER_TBLKULLANICILAR" />
+        <AssociationConnector Association="Model.FK_TBLSIPARIS_TBLADRESLER" />
+        <AssociationConnector Association="Model.FK_TBLURUNLER_TBLKATEGORILER" />
+        <AssociationConnector Association="Model.FK_TBLSIPARIS_TBLKULLANICILAR" />
+        <AssociationConnector Association="Model.FK_TBLYORUMLAR_TBLKULLANICILAR" />
+        <AssociationConnector Association="Model.FK_TBLSIPARISDETAY_TBLSIPARIS" />
+        <AssociationConnector Association="Model.FK_TBLSIPARISDETAY_TBLURUNLER" />
+        <AssociationConnector Association="Model.FK_TBLYORUMLAR_TBLURUNLER" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

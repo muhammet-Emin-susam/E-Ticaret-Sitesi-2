@@ -1,0 +1,9 @@
+﻿@using E_TicaretOtomasyonu.Models;
+@model IEnumerable<E_TicaretOtomasyonu.Models.TBLKATEGORILER>
+
+
+@foreach (var item in Model)
+{
+    <li><a href=" @Url.Action("KategoriBazliUrunler", "Home", new { id = item.ID })">@item.KategoriAD</a></li>
+}
+

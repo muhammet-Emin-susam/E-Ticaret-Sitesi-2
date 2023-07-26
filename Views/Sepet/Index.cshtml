@@ -1,0 +1,203 @@
+﻿@model E_TicaretOtomasyonu.Models.Sepet
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="~/Content/img/shopping-cart-banner.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Sepet Detayları</h2>
+                    <div class="breadcrumb__option">
+                        <a href="/Home/Index">Anasayfa</a>
+                        <span>Sepet</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Shoping Cart Section Begin -->
+<section class="shoping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="shoping__product">Ürün</th>
+                                <th>Fiyat</th>
+                                <th>Adet</th>
+                                <th>Toplam</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        @if (@*Model.Sepetdetay != null ||*@ Model.Sepetdetay.Count == 0)
+{
+<tbody>
+    <tr>
+        <td>Sepetinizde Ürün Bulunmamaktadır</td>
+        <td>Sepetinizde Ürün Bulunmamaktadır</td>
+        <td>Sepetinizde Ürün Bulunmamaktadır</td>
+        <td>Sepetinizde Ürün Bulunmamaktadır</td>
+    </tr>
+</tbody>
+}
+else
+{
+<tbody>
+    @foreach (var item in Model.Sepetdetay)
+    {
+        <tr>
+            <td class="shoping__cart__item">
+                <a href="~/UrunDetay/Index/@item.Urunler.ID">
+                    <img src="@item.Urunler.ImageURL" style="width: 100px; height:100px;">
+                    <h5>@item.Urunler.UrunAdi</h5>
+                </a>
+            </td>
+            <td class="shoping__cart__price">
+                @item.Urunler.Fiyat
+            </td>
+            <td class="shoping__cart__quantity">
+                <input type="text" value="@item.Adet" style="background-color:transparent; border:none; outline:none; margin-left:120px; font-weight:bold" disabled>
+            </td>
+            <td class="shoping__cart__total">
+                @(item.Urunler.Fiyat * item.Adet)
+            </td>
+            <td class="shoping__cart__item__close">
+                <span class="icon_close" onclick="SepettenKaldir(@item.Urunler.ID)"></span>
+            </td>
+        </tr>
+    }
+</tbody>
+}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__btns">
+                    <a href="/Home/Index/@Session["ID"]" class="primary-btn cart-btn">ALIŞVERİŞE DEVAM ET</a>
+                    @*<a href="#" class="primary-btn cart-btn cart-btn-right">
+                            <span class="icon_loading"></span>
+                            Upadate Cart
+                        </a>*@
+                </div>
+            </div>
+            <div class="col-lg-6">
+                @*<div class="shoping__continue">
+                        <div class="shoping__discount">
+                            <h5>Discount Codes</h5>
+                            <form action="#">
+                                <input type="text" placeholder="Enter your coupon code">
+                                <button type="submit" class="site-btn">APPLY COUPON</button>
+                            </form>
+                        </div>
+                    </div>*@
+            </div>
+            <input type="text" name="name" value="@Session["ID"]" hidden id="KullaniciID" />
+            <div class="col-lg-6">
+                <div class="shoping__checkout">
+                    <h5>Toplam Tutar</h5>
+                    <ul>
+                        @*<li>Ara Toplam <span>@Model.Toplam().ToString("c")</span></li>*@
+                        @foreach (var item in Model.Sepetdetay)
+                        {
+                            <li>@item.Urunler.UrunAdi <span>@item.Urunler.Fiyat</span></li>
+                        }
+                        <li>Toplam Tutar <span>@Model.Toplam().ToString("c")</span></li>
+                    </ul>
+                    @if (Session["ID"] != null)
+                    {
+                        <a href="#" class="primary-btn" onclick="getAdres(@Session["ID"])">Satın Al</a>
+                    }
+                    else
+                    {
+                        <a href="#" class="primary-btn" onclick="/Login/Index" >Satın Almak İçin Giriş Yapın</a>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade text-start modal-success" id="SiparisVerModal" tabindex="-1" aria-labelledby="myModalLabel110" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel110">Satın Al</h5>
+                @*<input type="text" name="name" value="" id="AdresID" hidden />*@
+                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+            </div>
+            <div class="modal-body" id="AdresGelecek">
+                
+            </div>
+            <div class="modal-footer">
+                <a href="/Home/Index" class="btn btn-success">Alışverişe devam et</a>
+                <a href="#" class="btn btn-success" onclick="SiparisVer()">Siparişi Tamamla</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Shoping Cart Section End -->
+
+
+@section Adjs{
+    <script>
+        function SepettenKaldir(ID) {
+            getValue("Sepet/SepettenSil",
+                { ID: ID },
+                function (data, err) {
+                    console.log(data);
+                    if (!data) {
+                        return;
+                    } else {
+                        window.location.href = '@Url.Action("Index","Sepet")';
+                    }
+                })
+
+        };
+        @*function SiparisVerModal() {
+            $('#SiparisVer').modal('show');
+        }*@
+        function SiparisVer() {
+            getValue("Sepet/SatinAl",
+                { KullaniciID: $('#KullaniciID').val(), AdresID: $('#AdresID').val() },
+                function (data, err) {
+                    console.log(AdresID)
+                    if (!data) {
+                        return;
+                    } else if (data == 'Başarılı') {
+                        window.location.replace("@Url.Action("Index", "Siparisler")")
+                    }
+                    else if (data == 'Hata') {
+                        alert("Hata");
+                    }
+                    else if (data == 'Bos') {
+                        alert("Lütfen Bilgileri Doldurunuz");
+                    }
+                });
+        };
+        function getAdres(ID) {
+            getValue("Sepet/AdresSec",
+                { ID: ID },
+                function (data, err) {
+                    console.log(data);
+                    if (!data) {
+                        return;
+                    } else {
+                        $('#AdresGelecek').html(data);
+                        /*$('#AdresID').val(ID);*/
+                        $('#SiparisVerModal').modal('show');
+                    }
+                })
+
+        };
+    </script>
+}

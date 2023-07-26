@@ -1,0 +1,30 @@
+﻿@using E_TicaretOtomasyonu.Models;
+@model List<TBLKATEGORILER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h6 class="pb-1 mb-4 text-muted">Grid Card</h6>
+<div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+    @foreach (var item in Model)
+    {
+        <div class="col">
+            <div class="card h-100">
+                <img class="card-img-top" src="@item.ResimURL" alt="Card image cap" />
+                <div class="card-body">
+                    <h5 class="card-title">@item.KategoriAD</h5>
+                    <p class="card-text">
+                        @item.KategoriAciklama
+                    </p>
+                    @*<input type="button" name="name" value="Düzenle" class="btn btn-success" onclick="/AdminKategoriler/KategoriDuzenle/@item.ID" />*@
+                    <a href="/AdminKategoriler/KategoriDuzenle/@item.ID" class="btn btn-success">Düzenle</a>
+                    <a href="/AdminKategoriler/KategoriSil/@item.ID" class="btn btn-danger">Sil</a>
+                    @*<input type="button" name="name" value="Sil" class="btn btn-danger"/>*@
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+

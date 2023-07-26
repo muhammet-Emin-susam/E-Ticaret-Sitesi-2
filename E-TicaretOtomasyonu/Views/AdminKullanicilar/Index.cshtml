@@ -1,0 +1,33 @@
+﻿@using E_TicaretOtomasyonu.Models
+@model List<TBLKULLANICILAR> 
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="table-responsive text-nowrap">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Kullanıcı Adı</th>
+                <th>Kullanıcı Mail</th>
+                <th>Kullanıcı Katılım Tarihi</th>
+                <th>Kullanıcı Telefon Numarası</th>
+            </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.KullaniciAdi</td>
+                <td>@item.KullaniciMail</td>
+                <td><span class="badge bg-label-primary me-1">@item.KullaniciKatilimTarihi</span></td>
+                <td>
+                    @item.KullaniciTel
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

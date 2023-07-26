@@ -1,0 +1,12 @@
+﻿@using E_TicaretOtomasyonu.Models;
+@model List<TBLADRESLER>
+
+
+<select name="selectedValue" class="form-control" aria-label="Adres Seçiniz" id="AdresID">
+    @foreach (var item in Model)
+    {
+        <option value="@item.ID">@*<span id="AdresID">@item.ID</span>*@@item.AdresAdi</option>
+
+    }
+</select>
+

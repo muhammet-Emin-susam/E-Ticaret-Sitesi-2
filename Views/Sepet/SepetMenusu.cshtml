@@ -1,0 +1,14 @@
+﻿@model E_TicaretOtomasyonu.Models.Sepet
+
+
+<li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+@if (Session["ID"] != null)
+{
+    <li><a href="/Sepet/Index/@Session["ID"]"><i class="fa fa-shopping-bag"></i> <span>@(Model.Sepetdetay.Count)</span></a></li>
+}
+else
+{
+    <li><a href="/Login/Index"><i class="fa fa-shopping-bag"></i> <span>@(Model.Sepetdetay.Count)</span></a></li>
+}
+
+<li><a href="/Login/CikisYap"><i class="fa fa-sign-out"></i></a></li>

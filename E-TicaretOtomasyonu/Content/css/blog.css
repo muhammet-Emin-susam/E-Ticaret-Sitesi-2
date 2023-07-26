@@ -1,0 +1,221 @@
+
+/* Breadcrumb Section Start */
+
+.breadcrumb-section {
+	display: flex;
+	background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+	align-items: center;
+	padding: 45px 0 40px;
+}
+
+.breadcrumb__text h2 {
+	font-size: 46px;
+	color: #ffffff;
+	font-weight: 700;
+}
+
+.breadcrumb__option a {
+	display: inline-block;
+	font-size: 16px;
+	color: #ffffff;
+	font-weight: 700;
+	margin-right: 20px;
+	position: relative;
+}
+
+.breadcrumb__option a:after {
+	position: absolute;
+	right: -12px;
+	top: 13px;
+	height: 1px;
+	width: 10px;
+	background: #ffffff;
+	content: "";
+}
+
+.breadcrumb__option span {
+	display: inline-block;
+	font-size: 16px;
+	color: #ffffff;
+}
+
+/* Breadcrumb Section End */
+
+
+/* Blog Section Start */
+
+.Blog{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #1a1a1a;
+	padding-bottom: 60px;
+}
+
+.Blog .Blog-Content{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 60px;
+}
+
+.Blog .Card-All{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-top: 40px;
+	justify-content: center;
+}
+
+.Blog .Card-All .Card-1{
+	margin-right: 50px;
+	border-radius: 30px;
+	border-bottom: 4px solid red;
+	overflow: hidden;
+}
+
+.Blog .Card-All .Card-1 .Card-1-Child{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-image: url('/img/blog-card.jpeg');
+	padding: 80px;
+	transition: all 0.5s;
+}
+
+.Blog .Card-All .Card-2{
+	margin-right: 50px;
+	border-radius: 30px;
+	border-bottom: 4px solid red;
+	overflow: hidden;
+}
+
+.Blog .Card-All .Card-2 .Card-2-Child{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-image: url('/img/blog-card.jpeg');
+	padding: 80px;
+	transition: all 0.5s;
+}
+
+.Blog .Card-All .Card-3{
+	margin-right: 50px;
+	border-radius: 30px;
+	border-bottom: 4px solid red;
+	overflow: hidden;
+}
+
+.Blog .Card-All .Card-3 .Card-3-Child{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-image: url('/img/blog-card.jpeg');
+	padding: 80px;
+	transition: all 0.5s;
+}
+
+.Blog .Card-All .Card-4{
+	margin-right: 50px;
+	border-radius: 30px;
+	border-bottom: 4px solid red;
+	overflow: hidden;
+}
+
+.Blog .Card-All .Card-4 .Card-4-Child{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-image: url('/img/blog-card.jpeg');
+	padding: 80px;
+	transition: all 0.5s;
+}
+
+.Blog .Card-All .Card-1:hover .Card-1-Child{
+	transform: scale(1.2);
+}
+.Blog .Card-All .Card-1:hover{
+	border-bottom: 4px solid goldenrod;
+}
+
+.Blog .Card-All .Card-2:hover .Card-2-Child{
+	transform: scale(1.2);
+}
+.Blog .Card-All .Card-2:hover{
+	border-bottom: 4px solid goldenrod;
+}
+
+.Blog .Card-All .Card-3:hover .Card-3-Child{
+	transform: scale(1.2);
+}
+.Blog .Card-All .Card-3:hover{
+	border-bottom: 4px solid goldenrod;
+}
+
+.Blog .Card-All .Card-4:hover .Card-4-Child{
+	transform: scale(1.2);
+}
+.Blog .Card-All .Card-4:hover{
+	border-bottom: 4px solid goldenrod;
+}
+
+.Blog .Blog-Content h2{
+	color: white;
+	font-size: 22px;
+	font-weight: 400;
+	font-family: Arial, Helvetica, sans-serif;
+	margin-bottom: 30px;
+}
+
+.Blog .Blog-Content h1{
+	color: orange;
+	font-size: 70px;
+	font-weight: 600;
+	font-family: Arial, Helvetica, sans-serif;
+	margin-bottom: 15px;
+}
+
+.Blog .Blog-Content img{
+	background-color: white;
+	border-radius: 50%;
+	max-width: none;
+	border: 6px solid orange;
+}
+
+.Blog .Blog-Content p{
+	margin: 0;
+	padding-bottom: 4px;
+	font-size: 16px;
+	font-weight:500;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.Blog .Blog-Content p:nth-last-child(4){
+	margin-top: 20px;
+}
+
+.Blog .Blog-Content p:nth-last-child(2){
+	margin-bottom: 25px;
+}
+
+.Blog .Blog-Content a{
+	color: white;
+	font-size: 18px;
+	font-weight:400;
+	font-family: Arial, Helvetica, sans-serif;
+	cursor: pointer;
+	border-bottom: 1px solid red;
+}
+
+.Blog .Blog-Content span{
+	color: white;
+	font-size: 18px;
+	font-weight:400;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Blog Section End */
